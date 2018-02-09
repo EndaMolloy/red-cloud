@@ -1,7 +1,7 @@
-
+require('dotenv').config();
 const yargs = require('yargs');
 
-const geocode = require('./controllers/geocode');
+const weather = require('./controllers/weather');
 
 const argv = yargs
   .options({
@@ -16,4 +16,4 @@ const argv = yargs
   .alias('help', 'h')
   .argv;
 
-geocode.geocodeAddress(argv.a)
+weather.getWeatherData(argv.a)
