@@ -1,0 +1,19 @@
+{
+  "name": "redsky",
+  "version": "1.0.0",
+  "description": "Weather app using the darkSky API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "yargs": "^11.0.0"
+  }
+}
