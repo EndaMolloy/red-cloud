@@ -3,9 +3,12 @@ const router = express.Router();
 
 const weather = require('../controllers/weather');
 
-router.route('/')
-  .get((req,res,next)=> {
-    res.send('index.html')
+
+router.route('/weather')
+  .post((req,res,next)=> {
+    console.log(req.body);
+    // weather.getWeatherData()
+    res.send('This worked.')
   })
 
 

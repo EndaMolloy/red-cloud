@@ -1,3 +1,26 @@
+
 h1 {
+  margin-top: 0;
   color: red;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1509477317859-ce3f0c2ae7bb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a92859a9901c45583a83fe169895692b&auto=format&fit=crop&w=1539&q=80);
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.addressbar{
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.col-1{
+ background: #3498db;
 }
