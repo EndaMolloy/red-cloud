@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
-app.use('/weather', require('./routes/weather'));
+app.use('/api', require('./routes/api'));
 
 // const argv = yargs
 //   .options({

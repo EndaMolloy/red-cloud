@@ -8,27 +8,31 @@
     <title>Redsky Weather App</title>
   </head>
   <body>
-    <div class="container-fluid">
-     <div class="row">
-       <div class="col-xs-12">
-        <div class="input-group addressbar">
-          <form class="location-search" action="/weather" method="POST">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="submit">Go!</button>
-            </span>
-          </form>
-        </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
-     </div>
+    <div class="landing">
+      <div class="container-fluid">
+       <div class="row">
+         <div class="col-xs-12">
+           <div class="search-container">
+             <form action="/api/weather" method="POST">
+               <div class="input-group">
+                 <input type="text" class="form-control search-bar" placeholder="Search for..." name="address">
+                 <span class="input-group-btn">
+                   <button class="btn btn-default" type="submit">Go!</button>
+                 </span>
+               </div>
+             </form>
+           </div>
+         </div><!-- /.col-xs-12 -->
+       </div><!-- end of row -->
+      </div>
+      <div class="circle">
+        weather
+      </div>
+      <div class="next-hour">
+        next-hour
+      </div>
     </div>
 
-       <h1>My weather app</h1>
-    </div>
-    </div>
-    <div class="">
-
-    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
