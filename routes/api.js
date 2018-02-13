@@ -9,6 +9,7 @@ router.route('/weather')
     try {
       const address = await weather.getLocation(req.body.address);
       const weatherData = await weather.getWeather(address.location);
+      //console.log(weatherData.hourly.data);
       res.send(weatherData.timezone)
     }
     catch (e) {
