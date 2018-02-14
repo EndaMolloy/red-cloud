@@ -5,26 +5,36 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
      <link rel="stylesheet" href="/css/bootstrap4.min.css">
      <link rel="stylesheet" href="/css/master.css">
+     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <title>Redsky Weather App</title>
   </head>
   <body>
     <div id="landing" class="content-section">
-      <div class="container-fluid no-gutter">
-       <div class="row">
-         <div class="col-12">
-           <div class="search-container">
-             <form action="/api/weather" method="POST">
-               <div class="input-group">
-                 <input type="text" class="form-control search-bar" placeholder="Search for..." name="address">
-                 <span class="input-group-btn">
-                   <button class="btn btn-default" type="submit">Go!</button>
-                 </span>
-               </div>
-             </form>
+      <nav class="navbar navbar-custom">
+        <div class="container navbar-container no-gutter">
+          <a class="navbar-brand" href="#">
+           <img src="/img/red-cloud-full.png" width="30" height="30" alt="">
+         </a>
+         <form id="search-form" class="d-flex" action="/api/weather" method="POST">
+           <input id="search-bar" class="form-control form-control-sm" type="text" placeholder="Search" name="address">
+           <button class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+          <i id="fa-icon" class="far fa-image fa-2x"></i>
+       </div>
+        <!-- <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/img/red-cloud-full.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+         <form action="/api/weather" method="POST">
+           <div class="input-group">
+             <input type="text" class="form-control search-bar" placeholder="Search for..." name="address">
+             <span class="input-group-btn">
+               <button class="btn btn-default" type="submit">Go!</button>
+             </span>
            </div>
-         </div><!-- /.col-xs-12 -->
-       </div><!-- end of row -->
-      </div>
+         </form>
+         </div> -->
+      </nav>
       <div class="circle">
         <canvas id="icon1" width="88" height="88"></canvas>
         <div class="container">

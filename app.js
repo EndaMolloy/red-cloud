@@ -7,6 +7,7 @@ const logger = require('morgan');
 const yargs = require('yargs');
 
 const weather = require('./controllers/weather');
+const settings = require('./settings');
 
 const app = express();
 
