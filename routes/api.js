@@ -9,8 +9,12 @@ router.route('/weather')
     try {
       const address = await weather.getLocation(req.body.address);
       const weatherData = await weather.getWeather(address.location);
-      //console.log(weatherData.hourly.data);
-      res.send(weatherData.timezone)
+      
+      res.render('location', {
+        currently: weatherData.currently,
+        minutely: weatherData.minutely,
+        daily: weatherData.daily
+      });
     }
     catch (e) {
       console.log(e);

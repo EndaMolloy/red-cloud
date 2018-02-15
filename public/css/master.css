@@ -1,5 +1,6 @@
 body {
  overflow-x: hidden;
+ height: 100%;
 }
 
 .content-section {
@@ -11,12 +12,34 @@ body {
   flex-direction: column;
 }
 
+/* NOTE: LANDING PAGE ------- */
+.landing-container {
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 40%;
+}
+
+#homepage {
+  background-image: url(https://images.unsplash.com/photo-1504538886760-5814a96f6c92?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=15d7689dfdfb08961d092a2ab1333d09&auto=format&fit=crop&w=1050&q=80);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+#landing-form {
+  padding-top: 20px;
+}
+
+/* NOTE: LANDING PAGE END ------- */
+
 #landing {
   background-image: url(https://images.unsplash.com/photo-1516370721843-f130b65def70?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2aabaa8c58005835078f6e273fe830f0&auto=format&fit=crop&w=634&q=80);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-height: calc(100vh-56px);
+  padding-top: 40px;
 }
 
 .navbar-container {
@@ -73,7 +96,7 @@ body {
   background-color: rgba(0,0,0,0.6);
 }
 
-#icon1 {
+#current-weather-icon {
   padding-top: 20px;
 }
 

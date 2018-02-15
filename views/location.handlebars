@@ -1,0 +1,219 @@
+<div id="landing" class="content-section">
+  <div class="circle">
+    <canvas id="current-weather-icon" width="88" height="88"></canvas>
+    <div class="container">
+      <div class="row">
+        <div class="col-3 edge-col no-padding-col">
+          <div id="sun-rise">
+            sunrise<br>{{toTime daily.data.0.sunriseTime}}
+          </div>
+        </div>
+        <div class="col-6 no-padding-col">
+          <div id="current-weather">{{currently.summary}}</div>
+          <div id="current-temp">{{toCelcius currently.temperature}}</div>
+          <div id="feels-like">Feels like {{currently.apparentTemperature}}</div>
+        </div>
+        <div class="col-3 edge-col no-padding-col">
+          <div id="sun-set">
+            sunset<br>17:20
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div id="rain-probability">
+             Likelihood of rain today: <br>100%
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="next-hour-container">
+    <div class="row">
+      <div class="col-12">
+        <div id="next-hour">
+          <div id="next-hour-title" class="title">
+            Next hour outlook
+          </div>
+          <div id="next-hour-text"class="text">
+            Light rain stopping in 13 min., starting again 30 min. later.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div> <!-- end of landing page -->
+  <div id="today">
+  <div id="today-outlook-title" class="title">
+    Today's outlook
+  </div>
+  <div id="today-outlook-text" class="text">
+    Light rain today through Friday, with temperatures rising to 10°C tomorrow.
+  </div>
+  <div class="table-responsive">
+    <table class="table  table-striped">
+      <thead class="thead-inverse table-heading">
+        <tr>
+          <th>Time</th>
+          <th colspan="2">Summary</th>
+          <th>Temp C</th>
+          <th>Chance of Rain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="time" scope="row">2pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">4pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">6pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">8pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">10pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Clear</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">12am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Clear</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">2am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Light Rain</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">4am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="radar">
+  <script src='https://darksky.net/map-embed/@radar,53.638,-7.734,6.js?embed=true&timeControl=true&fieldControl=true&defaultField=radar'></script>
+  </div>
+  <div class="week">
+  <div id="week-outlook-title" class="title">
+    The week ahead
+  </div>
+  <div id="week-outlook-text" class="text">
+    Light rain today through Friday, with temperatures rising to 10°C tomorrow.
+  </div>
+  <div class="table-responsive">
+    <table class="table  table-striped">
+      <thead class="thead-inverse table-heading">
+        <tr>
+          <th>Time</th>
+          <th colspan="2">Summary</th>
+          <th>Temp C</th>
+          <th>Chance of Rain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="time" scope="row">Today<br>Feb13</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4° | 6°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">4pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">6pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">8pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">10pm</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Clear</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">12am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Clear</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">2am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Light Rain</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <th class="time" scope="row">4am</th>
+          <td><canvas id="icon2" width="34" height="34"></canvas></td>
+          <td class="summary-desc">Partly Cloudy</td>
+          <td>4°</td>
+          <td>30%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{#section 'script'}}
+  <script src="/js/skycons.js"></script>
+  <script type="text/javascript">
+  const whiteIcons = new Skycons({"color": "white"});
+  const BlackIcons = new Skycons();
+
+  whiteIcons.set("current-weather-icon","{{currently.icon}}");
+  whiteIcons.play();
+
+  </script>
+
+{{/section}}
