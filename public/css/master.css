@@ -131,6 +131,7 @@ body {
 #next-hour-container {
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 
 #next-hour {
@@ -138,6 +139,11 @@ body {
  height: 100px;
  background-color: rgba(0,0,0,0.6);
 }
+
+#next-hour-text {
+  text-align: center;
+}
+
 .title {
   font-size: 12px;
   padding-top: 10px;
@@ -156,7 +162,7 @@ body {
 .table td {
    text-align: center;
    vertical-align: middle;
-   padding: 5px;
+   padding: 2.5px;
 }
 
 .table thead th {
@@ -169,6 +175,14 @@ body {
 
 .table tbody th {
   vertical-align: middle;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 12px;
+}
+
+.time {
+  font-size: 12px;
+  text-transform: lowercase;
 }
 
 footer {

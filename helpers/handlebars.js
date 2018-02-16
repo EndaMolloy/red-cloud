@@ -8,9 +8,15 @@ module.exports = {
     return Math.round(((temp-32)*5)/9);
   },
   toTime: function(time){
-    const t = new Date(time);
-    const h = t.getHours();
-    const m = t.getMinutes();
-    return `${h}:${m}`;
-  }
+    const date = new Date(time*1000);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${hours}:${minutes}`;
+  },
+  toPercent: num=> num*100,
+  toHour: time => {
+    const date = new Date(time*1000);
+    return date.toLocaleString('en-GB', { hour: 'numeric', hour12: true });
+  },
+  format: hour => `hourly.data.${hour}.time`
 }

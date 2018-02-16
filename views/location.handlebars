@@ -10,118 +10,127 @@
         </div>
         <div class="col-6 no-padding-col">
           <div id="current-weather">{{currently.summary}}</div>
-          <div id="current-temp">{{toCelcius currently.temperature}}</div>
-          <div id="feels-like">Feels like {{currently.apparentTemperature}}</div>
+          <div id="current-temp">{{toCelcius currently.temperature}}°</div>
+          <div id="feels-like">Feels like {{toCelcius currently.apparentTemperature}}°</div>
         </div>
         <div class="col-3 edge-col no-padding-col">
           <div id="sun-set">
-            sunset<br>17:20
+            sunset<br>{{toTime daily.data.0.sunsetTime}}
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <div id="rain-probability">
-             Likelihood of rain today: <br>100%
+             Likelihood of {{daily.data.0.precipType}} today: <br>{{toPercent daily.data.0.precipProbability}}%
           </div>
         </div>
       </div>
     </div>
-
   </div>
   <div id="next-hour-container">
-    <div class="row">
-      <div class="col-12">
-        <div id="next-hour">
-          <div id="next-hour-title" class="title">
-            Next hour outlook
-          </div>
-          <div id="next-hour-text"class="text">
-            Light rain stopping in 13 min., starting again 30 min. later.
-          </div>
-        </div>
+    <div id="next-hour">
+      <div id="next-hour-title" class="title">
+        Next hour outlook
+      </div>
+      <div id="next-hour-text"class="text">
+        {{minutely.summary}}
       </div>
     </div>
   </div>
 
   </div> <!-- end of landing page -->
   <div id="today">
-  <div id="today-outlook-title" class="title">
-    Today's outlook
-  </div>
-  <div id="today-outlook-text" class="text">
-    Light rain today through Friday, with temperatures rising to 10°C tomorrow.
-  </div>
-  <div class="table-responsive">
-    <table class="table  table-striped">
-      <thead class="thead-inverse table-heading">
-        <tr>
-          <th>Time</th>
-          <th colspan="2">Summary</th>
-          <th>Temp C</th>
-          <th>Chance of Rain</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="time" scope="row">2pm</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Partly Cloudy</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">4pm</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Partly Cloudy</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">6pm</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Partly Cloudy</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">8pm</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Partly Cloudy</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">10pm</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Clear</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">12am</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Clear</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">2am</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Light Rain</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-        <tr>
-          <th class="time" scope="row">4am</th>
-          <td><canvas id="icon2" width="34" height="34"></canvas></td>
-          <td class="summary-desc">Partly Cloudy</td>
-          <td>4°</td>
-          <td>30%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div id="today-outlook-title" class="title">
+      Today's outlook
+    </div>
+    <div id="today-outlook-text" class="text">
+      {{hourly.summary}}
+    </div>
+    <div class="table-responsive">
+      <table class="table  table-striped">
+        <thead class="thead-inverse table-heading">
+          <tr>
+            <th>Time</th>
+            <th colspan="2">Summary</th>
+            <th>Temp C</th>
+            <th>Chance<br> of Rain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.1.time}}</th>
+            <td><canvas id="hour-1-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.1.temperature}}°</td>
+            <td>{{toPercent hourly.data.1.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.3.time}}</th>
+            <td><canvas id="hour-3-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.3.temperature}}°</td>
+            <td>{{toPercent hourly.data.3.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.5.time}}</th>
+            <td><canvas id="hour-5-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.5.temperature}}°</td>
+            <td>{{toPercent hourly.data.5.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.7.time}}</th>
+            <td><canvas id="hour-7-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.7.temperature}}°</td>
+            <td>{{toPercent hourly.data.7.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.9.time}}</th>
+            <td><canvas id="hour-9-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Clear</td>
+            <td>{{toCelcius hourly.data.9.temperature}}°</td>
+            <td>{{toPercent hourly.data.9.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.12.time}}</th>
+            <td><canvas id="hour-12-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Clear</td>
+            <td>{{toCelcius hourly.data.12.temperature}}°</td>
+            <td>{{toPercent hourly.data.12.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.15.time}}</th>
+            <td><canvas id="hour-15-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Light Rain</td>
+            <td>{{toCelcius hourly.data.15.temperature}}°</td>
+            <td>{{toPercent hourly.data.15.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.18.time}}</th>
+            <td><canvas id="hour-18-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.18.temperature}}°</td>
+            <td>{{toPercent hourly.data.18.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.21.time}}</th>
+            <td><canvas id="hour-21-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.21.temperature}}°</td>
+            <td>{{toPercent hourly.data.21.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="time" scope="row">{{toHour hourly.data.24.time}}</th>
+            <td><canvas id="hour-24-icon" width="34" height="34"></canvas></td>
+            <td class="summary-desc">Partly Cloudy</td>
+            <td>{{toCelcius hourly.data.24.temperature}}°</td>
+            <td>{{toPercent hourly.data.24.precipProbability}}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="radar">
   <script src='https://darksky.net/map-embed/@radar,53.638,-7.734,6.js?embed=true&timeControl=true&fieldControl=true&defaultField=radar'></script>
@@ -209,10 +218,22 @@
   <script src="/js/skycons.js"></script>
   <script type="text/javascript">
   const whiteIcons = new Skycons({"color": "white"});
-  const BlackIcons = new Skycons();
+  const blackIcons = new Skycons();
 
   whiteIcons.set("current-weather-icon","{{currently.icon}}");
+  blackIcons.set("hour-1-icon","{{hourly.data.1.icon}}")
+  blackIcons.set("hour-3-icon","{{hourly.data.3.icon}}")
+  blackIcons.set("hour-5-icon","{{hourly.data.5.icon}}")
+  blackIcons.set("hour-7-icon","{{hourly.data.7.icon}}")
+  blackIcons.set("hour-9-icon","{{hourly.data.9.icon}}")
+  blackIcons.set("hour-12-icon","{{hourly.data.12.icon}}")
+  blackIcons.set("hour-15-icon","{{hourly.data.15.icon}}")
+  blackIcons.set("hour-18-icon","{{hourly.data.18.icon}}")
+  blackIcons.set("hour-21-icon","{{hourly.data.21.icon}}")
+  blackIcons.set("hour-24-icon","{{hourly.data.24.icon}}")
+
   whiteIcons.play();
+  blackIcons.play();
 
   </script>
 
