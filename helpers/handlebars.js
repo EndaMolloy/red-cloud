@@ -3,20 +3,36 @@ module.exports = {
     if (!this._sections) this._sections = {};
       this._sections[name] = options.fn(this);
       return null;
-    },
-  toCelcius: function(temp){
+   },
+  toCelcius: temp => {
     return Math.round(((temp-32)*5)/9);
   },
-  toTime: function(time){
-    const date = new Date(time*1000);
+  toTime: timestamp => {
+    const date = new Date(timestamp*1000);
     const hours = date.getHours();
     const minutes = date.getMinutes();
     return `${hours}:${minutes}`;
   },
-  toPercent: num=> num*100,
-  toHour: time => {
-    const date = new Date(time*1000);
+  toPercent: num => Math.round(num*100),
+  toHour: timestamp => {
+    const date = new Date(timestamp*1000);
     return date.toLocaleString('en-GB', { hour: 'numeric', hour12: true });
   },
-  format: hour => `hourly.data.${hour}.time`
+  toDay: timestamp => {
+    const date = new Date(timestamp*1000);
+    const weekday = new Array(7);
+    weekday[0] =  "Sun";
+    weekday[1] = "Mon";
+    weekday[2] = "Tue";
+    weekday[3] = "Wed";
+    weekday[4] = "Thu";
+    weekday[5] = "Fri";
+    weekday[6] = "Sat";
+
+    if(date.getDay() == new Date().getDay())
+      return "Today";
+    else {
+      return weekday[date.getDay()];
+    }
+  }
 }

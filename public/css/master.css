@@ -140,9 +140,6 @@ body {
  background-color: rgba(0,0,0,0.6);
 }
 
-#next-hour-text {
-  text-align: center;
-}
 
 .title {
   font-size: 12px;
@@ -152,7 +149,7 @@ body {
 
 .text {
  padding: 5px 20px;
- text-align: left;
+ text-align: center;
 }
 
 .table-responsive {
@@ -183,6 +180,16 @@ body {
 .time {
   font-size: 12px;
   text-transform: lowercase;
+  text-align: center;
+}
+
+.day{
+  font-size: 12px;
+  text-align: center;
+}
+
+#subheading {
+  font-size: 10px;
 }
 
 footer {

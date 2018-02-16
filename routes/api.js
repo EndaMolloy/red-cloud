@@ -9,7 +9,7 @@ router.route('/weather')
     try {
       const address = await weather.getLocation(req.body.address);
       const weatherData = await weather.getWeather(address.location);
-      //console.log(weatherData.hourly.data);
+      // console.log(weatherData.daily);
       res.render('location', {
         currently: weatherData.currently,
         minutely: weatherData.minutely,
