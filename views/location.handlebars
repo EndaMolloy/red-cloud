@@ -126,74 +126,75 @@
   <script src='https://darksky.net/map-embed/@radar,53.638,-7.734,6.js?embed=true&timeControl=true&fieldControl=true&defaultField=radar'></script>
   </div>
   <div class="week">
-  <div id="week-outlook-title" class="title">
-    The week ahead
+    <div id="week-outlook-title" class="title">
+      The week ahead
+    </div>
+    <div id="week-outlook-text" class="text">
+      Light rain today through Friday, with temperatures rising to 10°C tomorrow.
+    </div>
+    <div class="table-responsive">
+      <table class="table  table-striped">
+        <thead class="thead-inverse table-heading">
+          <tr>
+            <th>Time</th>
+            <th>Summary</th>
+            <th>Temp °C
+              <div id="subheading">Low | High</div>
+            </th>
+            <th>Chance of Rain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.0.time}}</th>
+            <td><canvas id="day-0-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.0.temperatureLow}}° | {{toCelcius daily.data.0.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.0.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.1.time}}</th>
+            <td><canvas id="day-1-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.1.temperatureLow}}° | {{toCelcius daily.data.1.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.1.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.2.time}}</th>
+            <td><canvas id="day-2-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.2.temperatureLow}}° | {{toCelcius daily.data.2.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.2.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.3.time}}</th>
+            <td><canvas id="day-3-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.3.temperatureLow}}° | {{toCelcius daily.data.3.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.3.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.4.time}}</th>
+            <td><canvas id="day-4-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.4.temperatureLow}}° | {{toCelcius daily.data.4.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.4.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.5.time}}</th>
+            <td><canvas id="day-5-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.5.temperatureLow}}° | {{toCelcius daily.data.5.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.5.precipProbability}}%</td>
+          </tr>
+          <tr>
+            <th class="day" scope="row">{{toDay daily.data.6.time}}</th>
+            <td><canvas id="day-6-icon" width="34" height="34"></canvas></td>
+            <td>{{toCelcius daily.data.6.temperatureLow}}° | {{toCelcius daily.data.6.temperatureHigh}}°</td>
+            <td>{{toPercent daily.data.6.precipProbability}}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div id="week-outlook-text" class="text">
-    Light rain today through Friday, with temperatures rising to 10°C tomorrow.
-  </div>
-  <div class="table-responsive">
-    <table class="table  table-striped">
-      <thead class="thead-inverse table-heading">
-        <tr>
-          <th>Time</th>
-          <th>Summary</th>
-          <th>Temp °C
-            <div id="subheading">Low | High</div>
-          </th>
-          <th>Chance of Rain</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.0.time}}</th>
-          <td><canvas id="day-0-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.0.temperatureLow}}° | {{toCelcius daily.data.0.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.0.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.1.time}}</th>
-          <td><canvas id="day-1-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.1.temperatureLow}}° | {{toCelcius daily.data.1.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.1.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.2.time}}</th>
-          <td><canvas id="day-2-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.2.temperatureLow}}° | {{toCelcius daily.data.2.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.2.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.3.time}}</th>
-          <td><canvas id="day-3-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.3.temperatureLow}}° | {{toCelcius daily.data.3.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.3.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.4.time}}</th>
-          <td><canvas id="day-4-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.4.temperatureLow}}° | {{toCelcius daily.data.4.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.4.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.5.time}}</th>
-          <td><canvas id="day-5-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.5.temperatureLow}}° | {{toCelcius daily.data.5.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.5.precipProbability}}%</td>
-        </tr>
-        <tr>
-          <th class="day" scope="row">{{toDay daily.data.6.time}}</th>
-          <td><canvas id="day-6-icon" width="34" height="34"></canvas></td>
-          <td>{{toCelcius daily.data.6.temperatureLow}}° | {{toCelcius daily.data.6.temperatureHigh}}°</td>
-          <td>{{toPercent daily.data.6.precipProbability}}%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
+  <div id="google-map"></div>
 {{#section 'script'}}
   <script src="/js/skycons.js"></script>
+  <script src="/js/app.js"></script>
   <script type="text/javascript">
   const whiteIcons = new Skycons({"color": "white"});
   whiteIcons.play();
@@ -222,5 +223,20 @@
   blackIcons.play();
 
   </script>
+  <!-- <script>
+    function initMap() {
+          var map = new google.maps.Map(document.getElementById('google-map'), {
+            zoom: 8,
+            center: {lat: {{address.location.lat}}, lng: {{address.location.lng}} }
+          });
+          var marker = new google.maps.Marker({
+          position: {lat: {{address.location.lat}}, lng: {{address.location.lng}} },
+          map: map
+        });
+        }
 
+  </script> -->
+  <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1lk9_MHOpNQSlUN4iF6p3zGrKu5cp76s&callback=initMap">
+    </script> -->
 {{/section}}

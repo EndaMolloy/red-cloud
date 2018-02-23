@@ -51,6 +51,7 @@ body {
   background-color: #333;
 }
 
+
 .btn-custom {
   background-color: red;
 }
@@ -66,6 +67,22 @@ body {
   width: 100%;
   max-width: 400px;
   margin-right: 1rem;
+}
+
+#navbar-search {
+  box-shadow: none;
+  outline: none;
+  margin-right: 5px;
+}
+
+#navbar-search {
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+#navbar-btn {
+  visibility: hidden;
 }
 
 #fa-icon{

@@ -9,8 +9,9 @@ router.route('/weather')
     try {
       const address = await weather.getLocation(req.body.address);
       const weatherData = await weather.getWeather(address.location);
-      // console.log(weatherData.daily);
+       
       res.render('location', {
+        address: address.address_components[0].long_name,
         currently: weatherData.currently,
         minutely: weatherData.minutely,
         hourly: weatherData.hourly,
@@ -21,6 +22,7 @@ router.route('/weather')
       res.redirect('/')
     }
   })
+
 
 
 module.exports = router;

@@ -4,8 +4,8 @@
      <img src="/img/red-cloud-full.png" width="30" height="30" alt="">
    </a>
    <form id="search-form" class="d-flex" action="/api/weather" method="POST">
-     <input id="search-bar" class="form-control form-control-sm" type="text" placeholder="Search" name="address">
-     <button class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
+     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}">
+     <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
     </form>
     <i id="fa-icon" class="far fa-image fa-lg"></i>
   </div>
