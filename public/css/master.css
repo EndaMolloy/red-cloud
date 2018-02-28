@@ -4,7 +4,8 @@ body {
 }
 
 .content-section {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
+  height: calc(100vh - 46px);
   padding-top: 0px;
   padding-bottom: 0px;
   position:relative;
@@ -35,7 +36,7 @@ body {
 /* NOTE: LANDING PAGE END ------- */
 
 #landing {
-  background-image: url(https://images.unsplash.com/photo-1516370721843-f130b65def70?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2aabaa8c58005835078f6e273fe830f0&auto=format&fit=crop&w=634&q=80);
+  background-image: url(https://images.unsplash.com/photo-1509223625571-c3087ddead08?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e411f2e9b7af6042ae3ea3378ac91d82&auto=format&fit=crop&w=500&q=60);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -225,4 +226,9 @@ footer {
 .attribution img {
   height: 2.5rem;
   margin: 20px 0;
+}
+
+#google-map{
+  height: 400px;
+  width: 100%;
 }

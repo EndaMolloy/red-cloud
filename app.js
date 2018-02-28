@@ -15,7 +15,7 @@ const app = express();
 app.use(logger('dev'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // View Engine
@@ -31,6 +31,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
+app.use('/forecast', require('./routes/forecast'));
 
 
 const port = process.env.PORT || 5000

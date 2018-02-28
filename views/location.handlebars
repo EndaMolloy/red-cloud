@@ -122,7 +122,10 @@
       </table>
     </div>
   </div>
-  <div class="radar">
+  <div id="radar">
+    <div id="radar-title" class="title">
+      Live weather radar
+    </div>
   <script src='https://darksky.net/map-embed/@radar,53.638,-7.734,6.js?embed=true&timeControl=true&fieldControl=true&defaultField=radar'></script>
   </div>
   <div class="week">
@@ -130,7 +133,7 @@
       The week ahead
     </div>
     <div id="week-outlook-text" class="text">
-      Light rain today through Friday, with temperatures rising to 10°C tomorrow.
+      {{daily.summary}}
     </div>
     <div class="table-responsive">
       <table class="table  table-striped">
@@ -191,52 +194,67 @@
       </table>
     </div>
   </div>
-  <div id="google-map"></div>
+  <div id="google-map-title" class="title">
+    Search location
+    <div id="google-map"></div>
+  </div>
 {{#section 'script'}}
   <script src="/js/skycons.js"></script>
-  <script src="/js/app.js"></script>
+
   <script type="text/javascript">
-  const whiteIcons = new Skycons({"color": "white"});
-  whiteIcons.play();
 
-  const blackIcons = new Skycons();
-  whiteIcons.set("current-weather-icon","{{currently.icon}}");
-  blackIcons.set("hour-1-icon","{{hourly.data.1.icon}}");
-  blackIcons.set("hour-3-icon","{{hourly.data.3.icon}}");
-  blackIcons.set("hour-5-icon","{{hourly.data.5.icon}}");
-  blackIcons.set("hour-7-icon","{{hourly.data.7.icon}}");
-  blackIcons.set("hour-9-icon","{{hourly.data.9.icon}}");
-  blackIcons.set("hour-12-icon","{{hourly.data.12.icon}}");
-  blackIcons.set("hour-15-icon","{{hourly.data.15.icon}}");
-  blackIcons.set("hour-18-icon","{{hourly.data.18.icon}}");
-  blackIcons.set("hour-21-icon","{{hourly.data.21.icon}}");
-  blackIcons.set("hour-24-icon","{{hourly.data.24.icon}}");
+    var address = {
+      address_title: "{{address}}",
+      lat: {{address_coord.lat}},
+      lng: {{address_coord.lng}}
+    };
+    localStorage.setItem('address', JSON.stringify(address));
+  </script>
+  <script type="text/javascript">
+    const whiteIcons = new Skycons({"color": "white"});
+    whiteIcons.play();
 
-  blackIcons.set("day-0-icon","{{daily.data.0.icon}}");
-  blackIcons.set("day-1-icon","{{daily.data.1.icon}}");
-  blackIcons.set("day-2-icon","{{daily.data.2.icon}}");
-  blackIcons.set("day-3-icon","{{daily.data.3.icon}}");
-  blackIcons.set("day-4-icon","{{daily.data.4.icon}}");
-  blackIcons.set("day-5-icon","{{daily.data.5.icon}}");
-  blackIcons.set("day-6-icon","{{daily.data.6.icon}}");
+    const blackIcons = new Skycons();
+    whiteIcons.set("current-weather-icon","{{currently.icon}}");
+    blackIcons.set("hour-1-icon","{{hourly.data.1.icon}}");
+    blackIcons.set("hour-3-icon","{{hourly.data.3.icon}}");
+    blackIcons.set("hour-5-icon","{{hourly.data.5.icon}}");
+    blackIcons.set("hour-7-icon","{{hourly.data.7.icon}}");
+    blackIcons.set("hour-9-icon","{{hourly.data.9.icon}}");
+    blackIcons.set("hour-12-icon","{{hourly.data.12.icon}}");
+    blackIcons.set("hour-15-icon","{{hourly.data.15.icon}}");
+    blackIcons.set("hour-18-icon","{{hourly.data.18.icon}}");
+    blackIcons.set("hour-21-icon","{{hourly.data.21.icon}}");
+    blackIcons.set("hour-24-icon","{{hourly.data.24.icon}}");
 
-  blackIcons.play();
+    blackIcons.set("day-0-icon","{{daily.data.0.icon}}");
+    blackIcons.set("day-1-icon","{{daily.data.1.icon}}");
+    blackIcons.set("day-2-icon","{{daily.data.2.icon}}");
+    blackIcons.set("day-3-icon","{{daily.data.3.icon}}");
+    blackIcons.set("day-4-icon","{{daily.data.4.icon}}");
+    blackIcons.set("day-5-icon","{{daily.data.5.icon}}");
+    blackIcons.set("day-6-icon","{{daily.data.6.icon}}");
+
+    blackIcons.play();
 
   </script>
-  <!-- <script>
+  <script src="/js/app.js"></script>
+  <script>
     function initMap() {
+
+          var location = {lat: {{address_coord.lat}}, lng: {{address_coord.lng}} };
           var map = new google.maps.Map(document.getElementById('google-map'), {
             zoom: 8,
-            center: {lat: {{address.location.lat}}, lng: {{address.location.lng}} }
+            center: location
           });
           var marker = new google.maps.Marker({
-          position: {lat: {{address.location.lat}}, lng: {{address.location.lng}} },
+          position: location,
           map: map
         });
         }
 
-  </script> -->
-  <!-- <script async defer
+  </script>
+  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1lk9_MHOpNQSlUN4iF6p3zGrKu5cp76s&callback=initMap">
-    </script> -->
+    </script>
 {{/section}}

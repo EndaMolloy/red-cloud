@@ -9,8 +9,8 @@ module.exports = {
   },
   toTime: timestamp => {
     const date = new Date(timestamp*1000);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const hours = zeroPad(date.getHours());
+    const minutes = zeroPad(date.getMinutes());
     return `${hours}:${minutes}`;
   },
   toPercent: num => Math.round(num*100),
@@ -35,4 +35,11 @@ module.exports = {
       return weekday[date.getDay()];
     }
   }
+}
+
+function zeroPad(i){
+  if(i<10)
+    i = "0"+i;
+
+  return i;
 }
