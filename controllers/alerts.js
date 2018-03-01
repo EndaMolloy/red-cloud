@@ -18,13 +18,6 @@ module.exports = {
               const text_array = warning_text.split('STATUS').filter(e => e.length > 5);
 
               return status_alerts(text_array);
-              // const headline_row = text_array[0].split(' ');
-              // return formatHeadline(headline_row[3]);
-              // const status = text_array[0].split(' ');
-              // return status[4];
-              // const duration = $('.wtime').each(function(i, elm){
-              //   alert[i] = $(this).text();
-              // })
 
             })
             .catch((err)=> {
@@ -44,25 +37,6 @@ function status_alerts(array){
 
   return alertArr;
 
-  // if(text.indexOf('RED')!== -1)
-  //   status = 'Red';
-  //
-  // if (text.indexOf('ORANGE')!== -1)
-  //   status = 'Orange';
-  //
-  // else if (text.indexOf('YELLOW')!== -1)
-  //   status = 'Yellow';
-  //
-  // let type = text.substring(status.length);
-  //
-  // if(type.indexOf('-'))
-  //   type = type.replace('-', ' & ');
-  //
-  // return {
-  //   status,
-  //   type
-  // };
-
 }
 
 function formatWarning(warning){
@@ -75,8 +49,47 @@ function formatWarning(warning){
   const nonEmpty = trim.filter(el => el.length);
 
 
-  console.log(nonEmpty);
+  const alertData = getHeadlineData(nonEmpty[0])
+
+
+
   return{
-    status: split[3]
+    status_color: alertData.status,
+    weather_type: alertData.weather_type,
+    area: alertData.area,
+    description: nonEmpty[1],
+    valid_until: getDuration(nonEmpty[3])
   }
+}
+
+function getHeadlineData(str){
+  let arr = str.split(' ');
+  const firstEl = arr[0];
+  let status = '';
+
+  if(firstEl.indexOf('RED')!== -1)
+    status = 'Red';
+
+  if (firstEl.indexOf('ORANGE')!== -1)
+    status = 'Orange';
+
+  if (firstEl.indexOf('YELLOW')!== -1)
+    status = 'Yellow';
+
+  let weather_type = firstEl.substring(status.length);
+
+  if(weather_type.indexOf('-'))
+    weather_type = weather_type.replace('-', ' & ');
+
+  const area = str.substring(firstEl.length);
+
+  return {
+    status,
+    weather_type,
+    area
+  };
+}
+
+function getDuration(str){
+  return str.replace('Valid:','');
 }
