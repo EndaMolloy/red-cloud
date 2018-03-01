@@ -5,23 +5,15 @@ const weather = require('../controllers/weather');
 
 
 router.route('/weather')
-  .post(async (req,res)=> {
+  .post(async (req, res) => {
     try {
-      // const address = await weather.getLocation(req.body.address);
-      // const weatherData = await weather.getWeather(address.location);
-      // //console.log(address);
-      // console.log(weatherData.daily);
-      // res.render('location', {
-      //   address_coord: address.location,
-      //   address: address.address_components[0].long_name,
-      //   currently: weatherData.currently,
-      //   minutely: weatherData.minutely,
-      //   hourly: weatherData.hourly,
-      //   daily: weatherData.daily
-      // });
-      res.redirect('/weather/'+req.body.address)
-    }
-    catch (e) {
+      const address = await weather.getLocation(req.body.address);
+      const lat = address.location.lat.toFixed(3);
+      const lng = address.location.lng.toFixed(3);
+      const address_text = address.address_components[0].long_name;
+
+      res.redirect(`/forecast/${lat},${lng}/${address_text}`);
+    } catch (e) {
       res.redirect('/')
     }
   })

@@ -1,3 +1,15 @@
+<nav class="navbar navbar-custom">
+  <div class="container navbar-container no-gutter">
+    <a class="navbar-brand" href="#">
+     <img src="/img/red-cloud-full.png" width="30" height="30" alt="">
+   </a>
+   <form id="search-form" class="d-flex" action="/api/weather" method="POST">
+     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}">
+     <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <i id="fa-icon" class="far fa-image fa-lg"></i>
+  </div>
+</nav>
 <div id="landing" class="content-section">
   <div class="circle">
     <canvas id="current-weather-icon" width="88" height="88"></canvas>
@@ -202,6 +214,8 @@
   <script src="/js/skycons.js"></script>
 
   <script type="text/javascript">
+    const pastSearches = localStorage.getItem('pastSearches');
+    console.log(JSON.parse(pastSearches));
 
     var address = {
       address_title: "{{address}}",

@@ -1,8 +1,13 @@
 (function() {
 
+  if(localStorage.pastSearches){
+    console.log("I've got old searches");
+
   //save search address in local storage
-  var pastSearches = [];
-  localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+  // var pastSearches = [];
+  // localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+
+  let pastSearches = JSON.parse(localStorage.pastSearches)
 
   if(pastSearches.indexOf(localStorage.address)== -1){
     pastSearches.unshift(localStorage.address);
@@ -11,6 +16,8 @@
 
     localStorage.pastSearches = JSON.stringify(pastSearches);
   }
+  }
+
 
   var navbarSearch = document.getElementById("navbar-search");
   navbarSearch.addEventListener("focus", focusSearch, true);
