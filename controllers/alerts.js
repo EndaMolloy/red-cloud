@@ -12,12 +12,16 @@ module.exports = {
             .then(response =>{
 
               const $ = cheerio.load(response.data);
-              let alert = [];
 
               const warning_text = $('#warning').first().text();
-              const text_array = warning_text.split('STATUS').filter(e => e.length > 5);
 
-              return status_alerts(text_array);
+              if(warning_text){
+                const text_array = warning_text.split('STATUS').filter(e => e.length > 5);
+                return status_alerts(text_array);
+              }
+              else{
+                return [];
+              }
 
             })
             .catch((err)=> {
@@ -57,7 +61,7 @@ function formatWarning(warning){
     status_color: alertData.status,
     weather_type: alertData.weather_type,
     area: alertData.area,
-    description: nonEmpty[1],
+    description: getDescription(nonEmpty[1]),
     valid_until: getDuration(nonEmpty[3])
   }
 }
@@ -81,13 +85,17 @@ function getHeadlineData(str){
   if(weather_type.indexOf('-'))
     weather_type = weather_type.replace('-', ' & ');
 
-  const area = str.substring(firstEl.length);
+  const area = str.substring(firstEl.length).trim();
 
   return {
     status,
     weather_type,
     area
   };
+}
+
+function getDescription(str){
+  return str.replace('Update','').trim();
 }
 
 function getDuration(str){
