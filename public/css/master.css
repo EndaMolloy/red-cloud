@@ -146,6 +146,25 @@ body {
   padding-top: 15px;
 }
 
+#warning-alerts-container {
+  position: absolute;
+  bottom: 105px;
+  width: 100%;
+}
+
+#warning-alerts {
+  color: white;
+  line-height: 30px;
+  padding: 0 16px;
+  background-color: rgba(0,0,0,0.6);
+  font-size: 0.8rem;
+}
+
+#warning-details {
+  float: right;
+}
+
+
 #next-hour-container {
   position: absolute;
   bottom: 0;

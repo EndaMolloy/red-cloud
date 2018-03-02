@@ -18,9 +18,8 @@ router.route('/:coordinates/:location')
 
       const weatherAlerts = await alerts.getAlerts();
 
-      console.log(weatherAlerts);
-
       res.render('location', {
+        weatherAlerts: weatherAlerts,
         address_coord: address,
         address: location_text,
         currently: weatherData.currently,

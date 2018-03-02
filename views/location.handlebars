@@ -3,11 +3,20 @@
     <a class="navbar-brand" href="#">
      <img src="/img/red-cloud-full.png" width="30" height="30" alt="">
    </a>
-   <form id="search-form" class="d-flex" action="/api/weather" method="POST">
-     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}">
+
+   <form id="search-form" class="d-flex dropdown" action="/api/weather" method="POST">
+     <i class="fas fa-caret-down"></i>
+     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}" id="menu1" data-toggle="dropdown">
      <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
-    </form>
-    <i id="fa-icon" class="far fa-image fa-lg"></i>
+     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                <div class="dropdown-divider"></div>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                <div class="dropdown-divider"></div>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+     </ul>
+   </form>
+   <i id="fa-icon" class="far fa-image fa-lg"></i>
   </div>
 </nav>
 <div id="landing" class="content-section">
@@ -37,6 +46,16 @@
              Likelihood of {{daily.data.0.precipType}} today: <br>{{toPercent daily.data.0.precipProbability}}%
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div id="warning-alerts-container">
+    <div id="warning-alerts">
+      <div class="warning-headline">
+        <img src="/img/{{weatherAlerts.0.status_color}}-warning.svg" width="27" height="25" alt="">
+        <span id="warning-color">{{weatherAlerts.0.status_color}} Warning</span>
+        <span id="warning-type"> - {{weatherAlerts.0.weather_type}}</span>
+        <span id="warning-details"><a href="#">More</a></span>
       </div>
     </div>
   </div>
