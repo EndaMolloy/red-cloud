@@ -36,11 +36,25 @@ body {
 /* NOTE: LANDING PAGE END ------- */
 
 #landing {
-  background-image: url(https://images.unsplash.com/photo-1509223625571-c3087ddead08?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e411f2e9b7af6042ae3ea3378ac91d82&auto=format&fit=crop&w=500&q=60);
+  background-image: url(https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e714908b0417954ef9d370c571355bf9&auto=format&fit=crop&w=634&q=80);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   padding-top: 40px;
+}
+
+#img-location-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#img-location {
+  color: white;
+  height: 40px;
+  background-color: rgba(0,0,0,0.6);
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .navbar-container {
@@ -68,26 +82,65 @@ body {
   width: 100%;
   max-width: 400px;
   margin-right: 1rem;
-}
-
-#navbar-search {
-  box-shadow: none;
-  outline: none;
-  margin-right: 5px;
+  display: block;
 }
 
 #navbar-search {
   background: transparent;
   border: none;
   color: white;
+  width: 215px;
+}
+
+#search-menu {
+  background: #333;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  margin-top: 1px;
+  width: 215px;
+}
+
+span.close {
+  float: right;
+  font-size: 1rem;
+  line-height: 1;
+  color: white;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.fa-caret-down {
+    color: white;
+    font-size: 0.65rem;
+}
+
+li {
+  padding: 0 8px;
+}
+
+a {
+    color: white;
 }
 
 #navbar-btn {
   visibility: hidden;
 }
 
-#fa-icon{
+#img-btn {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+
+.icons {
   color: white;
+}
+
+#landing-wrapper {
+  display: block;
 }
 
 .no-gutter.row,
@@ -128,9 +181,6 @@ body {
   font-weight: 700;
 }
 
-#feels-like {
-
-}
 
 #rain-probability {
   font-size: 12px;
@@ -250,4 +300,10 @@ footer {
 #google-map{
   height: 400px;
   width: 100%;
+}
+
+{
+ background: #000 !important;
+ color: #0f0 !important;
+ outline: solid #f00 1px !important;
 }

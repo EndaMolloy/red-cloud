@@ -8,70 +8,71 @@
      <i class="fas fa-caret-down"></i>
      <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}" data-toggle="dropdown">
      <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
-     <!-- <ul class="dropdown-menu" id="search-menu"> -->
-                <!-- <li><a href="#">HTML</a></li>
-                <div class="dropdown-divider"></div>
-                <li><a href="#">CSS</a></li>
-                <div class="dropdown-divider"></div>
-                <li><a href="#">JavaScript</a></li> -->
-     <!-- </ul> -->
    </form>
-   <i id="fa-icon" class="far fa-image fa-lg"></i>
+   <button type="button" id="img-btn"> <i class="far fa-image fa-lg icons"></i></button>
+
   </div>
 </nav>
 <div id="landing" class="content-section">
-  <div class="circle">
-    <canvas id="current-weather-icon" width="88" height="88"></canvas>
-    <div class="container">
-      <div class="row">
-        <div class="col-3 edge-col no-padding-col">
-          <div id="sun-rise">
-            sunrise<br>{{toTime daily.data.0.sunriseTime}}
+  <div id="landing-wrapper">
+    <div class="circle">
+      <canvas id="current-weather-icon" width="88" height="88"></canvas>
+      <div class="container">
+        <div class="row">
+          <div class="col-3 edge-col no-padding-col">
+            <div id="sun-rise">
+              sunrise<br>{{toTime daily.data.0.sunriseTime}}
+            </div>
+          </div>
+          <div class="col-6 no-padding-col">
+            <div id="current-weather">{{currently.summary}}</div>
+            <div id="current-temp">{{toCelcius currently.temperature}}°</div>
+            <div id="feels-like">Feels like {{toCelcius currently.apparentTemperature}}°</div>
+          </div>
+          <div class="col-3 edge-col no-padding-col">
+            <div id="sun-set">
+              sunset<br>{{toTime daily.data.0.sunsetTime}}
+            </div>
           </div>
         </div>
-        <div class="col-6 no-padding-col">
-          <div id="current-weather">{{currently.summary}}</div>
-          <div id="current-temp">{{toCelcius currently.temperature}}°</div>
-          <div id="feels-like">Feels like {{toCelcius currently.apparentTemperature}}°</div>
-        </div>
-        <div class="col-3 edge-col no-padding-col">
-          <div id="sun-set">
-            sunset<br>{{toTime daily.data.0.sunsetTime}}
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div id="rain-probability">
-             Likelihood of {{daily.data.0.precipType}} today: <br>{{toPercent daily.data.0.precipProbability}}%
+        <div class="row">
+          <div class="col-12">
+            <div id="rain-probability">
+               Likelihood of {{daily.data.0.precipType}} today: <br>{{toPercent daily.data.0.precipProbability}}%
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="warning-alerts-container">
-    <div id="warning-alerts">
-      <div class="warning-headline">
-        <img src="/img/{{weatherAlerts.0.status_color}}-warning.svg" width="27" height="25" alt="">
-        <span id="warning-color">{{weatherAlerts.0.status_color}} Warning</span>
-        <span id="warning-type"> - {{weatherAlerts.0.weather_type}}</span>
-        <span id="warning-details"><a href="#">More</a></span>
+    <div id="warning-alerts-container">
+      <div id="warning-alerts">
+        <div class="warning-headline">
+          <img src="/img/{{weatherAlerts.0.status_color}}-warning.svg" width="27" height="25" alt="">
+          <span id="warning-color">{{weatherAlerts.0.status_color}} Warning</span>
+          <span id="warning-type"> - {{weatherAlerts.0.weather_type}}</span>
+          <span id="warning-details"><a href="#">More</a></span>
+        </div>
+      </div>
+    </div>
+    <div id="next-hour-container">
+      <div id="next-hour">
+        <div id="next-hour-title" class="title">
+          Next hour outlook
+        </div>
+        <div id="next-hour-text"class="text">
+          {{minutely.summary}}
+        </div>
       </div>
     </div>
   </div>
-  <div id="next-hour-container">
-    <div id="next-hour">
-      <div id="next-hour-title" class="title">
-        Next hour outlook
-      </div>
-      <div id="next-hour-text"class="text">
-        {{minutely.summary}}
-      </div>
+  <div id="img-location-container">
+    <div id="img-location" style="display: none">
+      <i class="fas fa-map-marker-alt icons"></i>
+      Berlin, Germany. Photo by Enda Molloy.
     </div>
   </div>
-
-  </div> <!-- end of landing page -->
-  <div id="today">
+</div> <!-- end of landing page -->
+<div id="today">
     <div id="today-outlook-title" class="title">
       24 hour outlook
     </div>
@@ -242,6 +243,12 @@
       lng: {{address_coord.lng}}
     };
     localStorage.setItem('address', JSON.stringify(address));
+
+    if('{{weatherAlerts.0.status_color}}' === ''){
+      var elem = document.getElementById("warning-alerts-container");
+      elem.parentNode.removeChild(elem);
+    }
+
   </script>
   <script type="text/javascript">
     const whiteIcons = new Skycons({"color": "white"});

@@ -22,6 +22,19 @@
 
   }
 
+  // Click on picture to display background image
+  document.getElementById('img-btn').addEventListener("click", function(){
+    togglediv('landing-wrapper','img-location');
+  });
+
+
+  function togglediv(a,b) {
+    for(let i =0; i<arguments.length; i++){
+      var div = document.getElementById(arguments[i]);
+        div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+  }
+
   // Click on a close button to hide the current list item
   var close = document.getElementsByClassName("close");
   var i;
@@ -78,7 +91,6 @@
     menu.className = "dropdown-menu";
 
     document.getElementById("search-form").appendChild(menu);
-    console.log(menu);
 
     var options = document.getElementById("search-menu");
     var length = pastSearches.length;
