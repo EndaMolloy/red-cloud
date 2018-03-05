@@ -21,20 +21,20 @@ router.route('/:coordinates/:location')
 
       const rolling_metrics = JSON.stringify([
         {
-          "Sunrise": helpers.toTime(weatherData.daily.data[0].sunriseTime),
-          "Sunset": helpers.toTime(weatherData.daily.data[0].sunsetTime)
+          "Min": helpers.toInteger(weatherData.daily.data[0].temperatureLow)+ '°',
+          "Max": helpers.toInteger(weatherData.daily.data[0].temperatureHigh)+ '°'
         },
         {
-          "Min": weatherData.daily.data[0].temperatureLow+ '°',
-          "Max": weatherData.daily.data[0].temperatureHigh+ '°'
-        },
-        {
-          "Cloud cover": weatherData.currently.cloudCover,
+          "Cloud cover": helpers.toPercent(weatherData.currently.cloudCover)+'%',
           "UV Index": weatherData.currently.uvIndex
         },
         {
-          "Humidity": weatherData.currently.humidity+'%',
-          "Pressure": weatherData.currently.pressure+ 'mbar'
+          "Humidity": helpers.toPercent(weatherData.currently.humidity)+'%',
+          "Pressure": helpers.toInteger(weatherData.currently.pressure)+ 'mbar'
+        },
+        {
+          "Sunrise": helpers.toTime(weatherData.daily.data[0].sunriseTime),
+          "Sunset": helpers.toTime(weatherData.daily.data[0].sunsetTime)
         }
       ])
 

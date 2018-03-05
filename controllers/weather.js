@@ -26,7 +26,7 @@ module.exports = {
 
   getWeather: coordinates =>{
 
-    const darkSkyURL = `https://api.darksky.net/forecast/${settings.DARKSKY_API_KEY}/${coordinates.lat},${coordinates.lng}?exclude=flags?units=si`;
+    const darkSkyURL = `https://api.darksky.net/forecast/${settings.DARKSKY_API_KEY}/${coordinates.lat},${coordinates.lng}?exclude=flags&units=si`;
 
     return axios.get(darkSkyURL)
             .then(response =>{

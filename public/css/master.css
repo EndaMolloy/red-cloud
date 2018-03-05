@@ -113,8 +113,9 @@ span.close {
 }
 
 .fa-caret-down {
-    color: white;
-    font-size: 0.65rem;
+  color: white;
+  margin-top: 7px;
+  font-size: 0.65rem;
 }
 
 li {
@@ -186,6 +187,9 @@ a {
   font-weight: 700;
 }
 
+#wind {
+  font-size: 0.85rem;
+}
 
 #rain-probability {
   font-size: 12px;
@@ -311,4 +315,16 @@ footer {
  background: #000 !important;
  color: #0f0 !important;
  outline: solid #f00 1px !important;
+}
+
+/* Desktops and laptops ----------- */
+
+@media only screen
+and (min-width : 1224px) {
+
+  #landing {
+    background-image: url(https://images.unsplash.com/photo-1499615767948-e6a89ef6060f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ff7e0816b73331eb0f205ac167b2094f&auto=format&fit=crop&w=1050&q=80);
+
+  }
+
 }
