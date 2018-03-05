@@ -20,8 +20,14 @@
       <div class="container">
         <div class="row">
           <div class="col-3 edge-col no-padding-col">
-            <div id="sun-rise">
-              sunrise<br>{{toTime daily.data.0.sunriseTime}}
+            <div class="rolling-metric">
+              <div id="metric-left-text">
+                  sunrise
+                  <br>
+              </div>
+              <div id="metric-left-value">
+                {{toTime daily.data.0.sunriseTime}}
+              </div>
             </div>
           </div>
           <div class="col-6 no-padding-col">
@@ -30,8 +36,14 @@
             <div id="feels-like">Feels like {{toCelcius currently.apparentTemperature}}°</div>
           </div>
           <div class="col-3 edge-col no-padding-col">
-            <div id="sun-set">
-              sunset<br>{{toTime daily.data.0.sunsetTime}}
+            <div class="rolling-metric">
+              <div id="metric-right-text">
+                  sunset
+                  <br>
+              </div>
+              <div id="metric-right-value">
+                {{toTime daily.data.0.sunsetTime}}
+              </div>
             </div>
           </div>
         </div>
@@ -296,5 +308,26 @@
   </script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1lk9_MHOpNQSlUN4iF6p3zGrKu5cp76s&callback=initMap">
-    </script>
+  </script>
+  <script type="text/javascript">
+    var count = 0;
+    var info = {{{rolling_metrics}}}
+
+    setInterval(function(){
+      if(count == info.length)
+        count = 0;
+
+      setDisplay(count)
+      count++;
+    }, 5000);
+
+    function setDisplay(i){
+      const keys = Object.keys(info[i]);
+      const values = Object.values(info[i]);
+      document.getElementById('metric-left-text').textContent = keys[0];
+      document.getElementById('metric-right-text').textContent = keys[1];
+      document.getElementById('metric-left-value').textContent = values[0];
+      document.getElementById('metric-right-value').textContent = values[1];
+    }
+  </script>
 {{/section}}

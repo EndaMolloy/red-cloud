@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const weather = require('../controllers/weather');
 const alerts = require('../controllers/alerts');
+const helpers = require('../helpers/handlebars');
 
 router.route('/:coordinates/:location')
   .get(async (req, res) => {
@@ -18,7 +19,28 @@ router.route('/:coordinates/:location')
 
       const weatherAlerts = await alerts.getAlerts();
 
+      const rolling_metrics = JSON.stringify([
+        {
+          "Sunrise": helpers.toTime(weatherData.daily.data[0].sunriseTime),
+          "Sunset": helpers.toTime(weatherData.daily.data[0].sunsetTime)
+        },
+        {
+          "Min": weatherData.daily.data[0].temperatureLow+ '°',
+          "Max": weatherData.daily.data[0].temperatureHigh+ '°'
+        },
+        {
+          "Cloud cover": weatherData.currently.cloudCover,
+          "UV Index": weatherData.currently.uvIndex
+        },
+        {
+          "Humidity": weatherData.currently.humidity+'%',
+          "Pressure": weatherData.currently.pressure+ 'mbar'
+        }
+      ])
+
+
       res.render('location', {
+        rolling_metrics: rolling_metrics,
         weatherAlerts: weatherAlerts,
         address_coord: address,
         address: location_text,

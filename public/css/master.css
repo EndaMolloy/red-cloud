@@ -167,6 +167,11 @@ a {
   background-color: rgba(0,0,0,0.6);
 }
 
+.rolling-metric {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
 #current-weather-icon {
   padding-top: 20px;
 }
