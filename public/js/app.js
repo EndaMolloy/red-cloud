@@ -64,18 +64,6 @@
 
 
 
-  var navbarSearch = document.getElementById("navbar-search");
-  navbarSearch.addEventListener("focus", focusSearch, true);
-  navbarSearch.addEventListener("blur", rmFormatSearch, true);
-
-  function focusSearch() {
-    document.getElementById("navbar-btn").style.visibility = "visible";
-  }
-
-  function rmFormatSearch() {
-    document.getElementById("navbar-btn").style.visibility = "hidden";
-  }
-
   //dynamically add search locaiton from local storage to dropdown menu
   function populatePastSearchesMenu(){
 

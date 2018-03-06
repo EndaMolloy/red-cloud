@@ -1,13 +1,13 @@
 <nav class="navbar navbar-custom">
-  <div class="container navbar-container no-gutter">
+  <div class="container navbar-container no-gutter w-80">
     <a class="navbar-brand" href="#">
      <img src="/img/red-cloud-full.png" width="30" height="30" alt="">
    </a>
 
-   <form id="search-form" class="d-flex dropdown" action="/api/weather" method="POST">
+   <form id="search-form" class="d-flex dropdown mx-auto text-center" action="/api/weather" method="POST">
      <i class="fas fa-caret-down"></i>
-     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" placeholder="Search" name="address" value="{{address}}" data-toggle="dropdown">
-     <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search"></i></button>
+     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" autocomplete="off" placeholder="Enter Eircode or Town" name="address" value="{{address}}" data-toggle="dropdown">
+     <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search icons"></i></button>
    </form>
    <button type="button" id="img-btn"> <i class="far fa-image fa-lg icons"></i></button>
 
@@ -50,7 +50,7 @@
         <div class="row">
           <div class="col-12">
             <div id="wind">
-              <span> {{toTextDirection currently.windBearing}}</span> <span> {{toInteger currently.windSpeed}}m/s</span> 
+              <span> {{toTextDirection currently.windBearing}}</span> <span> {{toInteger currently.windSpeed}}m/s</span>
             </div>
             <div id="rain-probability">
                Chance of {{daily.data.0.precipType}}: <br>{{toPercent daily.data.0.precipProbability}}%
@@ -60,17 +60,17 @@
       </div>
     </div>
     <div id="warning-alerts-container">
-      <div id="warning-alerts">
+      <div id="warning-alerts" class ="custom-container">
         <div class="warning-headline">
           <img src="/img/{{weatherAlerts.0.status_color}}-warning.svg" width="27" height="25" alt="">
           <span id="warning-color">{{weatherAlerts.0.status_color}} Warning</span>
           <span id="warning-type"> - {{weatherAlerts.0.weather_type}}</span>
-          <span id="warning-details"><a href="#">More</a></span>
+          <span id="warning-details"><a href="#">Details</a></span>
         </div>
       </div>
     </div>
     <div id="next-hour-container">
-      <div id="next-hour">
+      <div id="next-hour" class ="custom-container">
         <div id="next-hour-title" class="title">
           Next hour outlook
         </div>
@@ -94,7 +94,7 @@
     <div id="today-outlook-text" class="text">
       {{hourly.summary}}
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive custom-container">
       <table class="table  table-striped">
         <thead class="thead-inverse table-heading">
           <tr>
@@ -182,7 +182,7 @@
     <div id="week-outlook-text" class="text">
       {{daily.summary}}
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive custom-container">
       <table class="table  table-striped">
         <thead class="thead-inverse table-heading">
           <tr>
@@ -244,6 +244,32 @@
   <div id="google-map-title" class="title">
     Search location
     <div id="google-map"></div>
+  </div>
+  <div class="weather-warnings-container custom-container">
+    <div class="title">
+        Weather Warning Details
+    </div>
+    {{#each weatherAlerts}}
+      <div class="warning-container">
+        <div class="warning-headline-color {{this.status_color}}">{{this.status_color}} Warning</div>
+        <div class="warning-weather">{{this.weather_type}} {{this.valid_until}}</div>
+      </div>
+      <div class="warning-title">
+        <h4>Regions Affected:</h4>
+      </div>
+      <div class="warning-regions">
+        {{this.area}}
+      </div>
+      <div class="warning-title">
+        <h4>Details:</h4>
+      </div>
+      <div class="warning-details">
+        {{this.description}}
+      </div>
+    {{/each}}
+    <div class="maplink">
+      <a href="#landing" class="action">Back to top</a>
+    </div>
   </div>
 {{#section 'script'}}
   <script src="/js/skycons.js"></script>

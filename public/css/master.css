@@ -16,7 +16,7 @@ body {
 /* NOTE: LANDING PAGE ------- */
 .landing-container {
   width: 80%;
-  max-width: 400px;
+  max-width: 300px;
   margin: 0 auto;
   padding-top: 40%;
 }
@@ -60,6 +60,8 @@ body {
 .navbar-container {
   display: flex;
   align-items: center;
+  margin: auto;
+  max-width: 900px;
 }
 
 .navbar-custom {
@@ -100,7 +102,7 @@ body {
   font-size: 0.8rem;
   margin-left: 10px;
   margin-top: 1px;
-  width: 215px;
+  width: calc(100% - 46px);
 }
 
 span.close {
@@ -127,7 +129,8 @@ a {
 }
 
 #navbar-btn {
-  visibility: hidden;
+  background-color: transparent;
+  border: none;
 }
 
 #img-btn {
@@ -144,12 +147,12 @@ a {
   display: block;
 }
 
-.no-gutter.row,
+/*.no-gutter.row,
 .no-gutter.container,
 .no-gutter.container-fluid{
   margin-left: 0;
   margin-right: 0;
-}
+}*/
 
 .no-gutter{
   padding-left: 0;
@@ -205,35 +208,40 @@ a {
   padding-top: 15px;
 }
 
+.custom-container {
+  max-width: 900px;
+  margin: auto;
+}
+
 #warning-alerts-container {
   position: absolute;
   bottom: 105px;
   width: 100%;
+  background-color: rgba(0,0,0,0.6);
 }
 
 #warning-alerts {
   color: white;
   line-height: 30px;
   padding: 0 16px;
-  background-color: rgba(0,0,0,0.6);
   font-size: 0.8rem;
+  text-align: center;
 }
 
 #warning-details {
-  float: right;
+  padding-left: 80px;
 }
-
 
 #next-hour-container {
   position: absolute;
   bottom: 0;
   width: 100%;
+  background-color: rgba(0,0,0,0.6);
 }
 
 #next-hour {
  color: white;
  height: 100px;
- background-color: rgba(0,0,0,0.6);
 }
 
 
@@ -317,6 +325,58 @@ footer {
  outline: solid #f00 1px !important;
 }
 
+.warning-headline-color{
+  width: 200px;
+  padding: 10px 20px;
+}
+
+.warning-weather{
+  width: 700px;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+.warning-container {
+  font-size: 10px;
+  display:flex;
+  justify-content:center;
+}
+
+.warning-title h4 {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.warning-details {
+  margin-bottom: 50px;
+}
+
+.maplink {
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+.maplink a {
+  color: #00819d;
+}
+
+.weather-warnings-container{
+  background-color: #f4f4f4;
+}
+
+.Yellow {
+  background-color: yellow;
+}
+
+.Red {
+  background-color: red;
+}
+
+.Orange {
+  background-color: orange;
+}
+
 /* Desktops and laptops ----------- */
 
 @media only screen
@@ -324,7 +384,10 @@ and (min-width : 1224px) {
 
   #landing {
     background-image: url(https://images.unsplash.com/photo-1499615767948-e6a89ef6060f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ff7e0816b73331eb0f205ac167b2094f&auto=format&fit=crop&w=1050&q=80);
+  }
 
+  #navbar-search {
+    width: 100%;
   }
 
 }

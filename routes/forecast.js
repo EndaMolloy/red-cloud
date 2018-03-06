@@ -36,8 +36,7 @@ router.route('/:coordinates/:location')
           "Sunrise": helpers.toTime(weatherData.daily.data[0].sunriseTime),
           "Sunset": helpers.toTime(weatherData.daily.data[0].sunsetTime)
         }
-      ])
-
+      ]);
 
       res.render('location', {
         rolling_metrics: rolling_metrics,
