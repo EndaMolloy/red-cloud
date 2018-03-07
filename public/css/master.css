@@ -96,7 +96,9 @@ body {
 
 #search-menu {
   background: #333;
-  border: none;
+  border-top: red solid 1.5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   outline: none;
   color: white;
   font-size: 0.8rem;
@@ -114,6 +116,11 @@ span.close {
   font-weight: 400;
 }
 
+span.close:hover {
+  color: white;
+  opacity: 1;
+}
+
 .fa-caret-down {
   color: white;
   margin-top: 7px;
@@ -125,8 +132,9 @@ li {
 }
 
 a {
-    color: white;
+  color: white;
 }
+
 
 #navbar-btn {
   background-color: transparent;
@@ -388,6 +396,20 @@ and (min-width : 1224px) {
 
   #navbar-search {
     width: 100%;
+  }
+
+  .icons {
+    color: grey;
+  }
+
+  .icons:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+  span.close:hover {
+    color: white;
+    opacity: 1;
   }
 
 }

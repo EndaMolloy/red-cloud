@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const weather = require('../controllers/weather');
 const alerts = require('../controllers/alerts');
+const weather_alerts = require('../controllers/weather_alerts');
 const helpers = require('../helpers/handlebars');
 
 router.route('/:coordinates/:location')
@@ -17,7 +18,8 @@ router.route('/:coordinates/:location')
 
       const weatherData = await weather.getWeather(address);
 
-      const weatherAlerts = await alerts.getAlerts();
+      const weatherAlerts = await weather_alerts.getAlerts();
+      console.log(weatherAlerts);
 
       const rolling_metrics = JSON.stringify([
         {
@@ -40,7 +42,7 @@ router.route('/:coordinates/:location')
 
       res.render('location', {
         rolling_metrics: rolling_metrics,
-        weatherAlerts: weatherAlerts,
+        //weatherAlerts: weatherAlerts,
         address_coord: address,
         address: location_text,
         currently: weatherData.currently,

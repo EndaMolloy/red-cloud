@@ -22,10 +22,23 @@
 
   }
 
+
+  //Remove current search value if input clicked and add back if click outside
+  var searchInput = document.getElementById("navbar-search");
+  searchInput.addEventListener("click", function() {
+    this.value = "";
+  }, true);
+  searchInput.addEventListener("blur", function() {
+    var currentSearch = JSON.parse(localStorage.address);
+    this.value = currentSearch.address_title;
+  }, true);
+
+
   // Click on picture to display background image
   document.getElementById('img-btn').addEventListener("click", function(){
     togglediv('landing-wrapper','img-location');
   });
+
 
 
   function togglediv(a,b) {

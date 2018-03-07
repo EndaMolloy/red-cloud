@@ -6,7 +6,7 @@
 
    <form id="search-form" class="d-flex dropdown mx-auto text-center" action="/api/weather" method="POST">
      <i class="fas fa-caret-down"></i>
-     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" autocomplete="off" placeholder="Enter Eircode or Town" name="address" value="{{address}}" data-toggle="dropdown">
+     <input id="navbar-search" class="location-found form-control form-control-sm" type="text" spellcheck="false" autocomplete="off" placeholder="Enter Eircode or Town" name="address" value="{{address}}" data-toggle="dropdown">
      <button id="navbar-btn" class="btn btn-default btn-sm" type="submit"><i class="fas fa-search icons"></i></button>
    </form>
    <button type="button" id="img-btn"> <i class="far fa-image fa-lg icons"></i></button>
@@ -328,6 +328,10 @@
             zoom: 8,
             center: location
           });
+
+          var trafficLayer = new google.maps.TrafficLayer();
+          trafficLayer.setMap(map);
+
           var marker = new google.maps.Marker({
           position: location,
           map: map
