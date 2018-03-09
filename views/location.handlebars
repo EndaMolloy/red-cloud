@@ -83,7 +83,7 @@
   <div id="img-location-container">
     <div id="img-location" style="display: none">
       <i class="fas fa-map-marker-alt icons"></i>
-      Berlin, Germany. Photo by Enda Molloy.
+      Somewhere, Co. Nice. Photo by Enda Molloy.
     </div>
   </div>
 </div> <!-- end of landing page -->
@@ -251,20 +251,22 @@
     </div>
     {{#each weatherAlerts}}
       <div class="warning-container">
-        <div class="warning-headline-color {{this.status_color}}">{{this.status_color}} Warning</div>
-        <div class="warning-weather">{{this.weather_type}} {{this.valid_until}}</div>
+        <div class="warning-headline-color {{this.description.warning_today_status}}">{{this.description.warning_today_status}} Warning</div>
+        <div class="warning-weather">{{this.description.warning_today_type}} Between {{this.description.warning_today_from}} and {{this.description.warning_today_until}}</div>
       </div>
       <div class="warning-title">
         <h4>Regions Affected:</h4>
       </div>
       <div class="warning-regions">
-        {{this.area}}
+        {{#each this.location}}
+          {{this}}
+        {{/each}}
       </div>
       <div class="warning-title">
         <h4>Details:</h4>
       </div>
       <div class="warning-details">
-        {{this.description}}
+        {{this.description.warning_today_desc}}
       </div>
     {{/each}}
     <div class="maplink">

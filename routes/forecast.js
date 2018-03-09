@@ -19,7 +19,6 @@ router.route('/:coordinates/:location')
       const weatherData = await weather.getWeather(address);
 
       const weatherAlerts = await weather_alerts.getAlerts();
-      console.log(weatherAlerts);
 
       const rolling_metrics = JSON.stringify([
         {
@@ -42,7 +41,7 @@ router.route('/:coordinates/:location')
 
       res.render('location', {
         rolling_metrics: rolling_metrics,
-        //weatherAlerts: weatherAlerts,
+        weatherAlerts: weatherAlerts,
         address_coord: address,
         address: location_text,
         currently: weatherData.currently,
