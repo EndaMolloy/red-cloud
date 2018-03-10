@@ -10,6 +10,7 @@ router.route('/weather')
       const address = await weather.getLocation(req.body.address);
       const lat = address.location.lat.toFixed(3);
       const lng = address.location.lng.toFixed(3);
+      console.log(address);
       const address_text = address.address_components[0].long_name;
 
       res.redirect(`/forecast/${lat},${lng}/${address_text}`);

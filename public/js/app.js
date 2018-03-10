@@ -1,5 +1,6 @@
 (function() {
 
+
   if(localStorage.pastSearches){
     console.log("I've got old searches");
 
@@ -19,20 +20,50 @@
       var pastSearches = [];
       pastSearches.unshift(localStorage.address);
       localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
-
   }
 
+  const searchInput = document.getElementById("navbar-search");
+  const searchBtn = document.getElementById("navbar-btn");
+  const pastSearchesList = document.getElementById("search-menu")
+  let searchReq_submitted = true;
 
-  //Remove current search value if input clicked and add back if click outside
-  var searchInput = document.getElementById("navbar-search");
+  //Set input box to empty if input clicked after a search
   searchInput.addEventListener("click", function() {
-    this.value = "";
+    if(searchReq_submitted){
+        this.value = "";
+        searchInput.style.borderBottom = "1.5px red solid";
+    }
   }, true);
-  searchInput.addEventListener("blur", function() {
-    var currentSearch = JSON.parse(localStorage.address);
-    this.value = currentSearch.address_title;
-  }, true);
+  searchInput.addEventListener("input", function(){
+    searchReq_submitted = false;
+  }, true)
 
+
+  searchBtn.addEventListener("click", function() {
+      searchReq_submitted = true;
+      searchInput.style.borderBottom = "";
+    }, true);
+
+
+  //prevent the menu from toggling when the user clicks on delete
+  //TODO should close when user clicks on address.
+  pastSearchesList.addEventListener('mousedown', function (ev) {
+    if (ev.target.tagName === 'A') {
+      searchInput.value = ev.target.textContent;
+      searchInput.style.borderBottom = "";
+    }else{
+      ev.stopPropagation();
+    }
+  });
+
+  //If input is left blank on click outside search bar, set input value to current search
+  searchInput.addEventListener("blur", function() {
+    if(!searchInput.value){
+      var currentSearch = JSON.parse(localStorage.address);
+      this.value = currentSearch.address_title;
+      searchInput.style.borderBottom = "";
+    }
+  }, false);
 
   // Click on picture to display background image
   document.getElementById('img-btn').addEventListener("click", function(){
@@ -54,17 +85,17 @@
 
   function togglediv(a,b) {
     for(let i =0; i<arguments.length; i++){
-      var div = document.getElementById(arguments[i]);
+      let div = document.getElementById(arguments[i]);
         div.style.display = div.style.display == "none" ? "block" : "none";
     }
   }
 
-  // Click on a close button to hide the current list item
-  var close = document.getElementsByClassName("close");
-  var i;
+  // Click on a close button to remove the location from pastSearches
+  const close = document.getElementsByClassName("close");
+  let i;
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-      var div = this.parentElement;
+      let div = this.parentElement;
 
       //remove dividers
       if(div.nextElementSibling){
@@ -75,7 +106,11 @@
       }
 
       //remove the address
+      let deletedLocation = div.childNodes[0].textContent;
+      removeFromLocalStorage(deletedLocation);
       div.parentNode.removeChild(div);
+
+
 
       //if no more addresses then remove the menu <ul>
       if(close.length == 0){
@@ -94,8 +129,6 @@
     var pastSearches = JSON.parse(localStorage.pastSearches);
     var currentSearch = JSON.parse(localStorage.address);
 
-    // var navbar = document.getElementById("navbar-search");
-    // navbar.setAttribute("")
 
     //Create UL element and set id name
     var menu = document.createElement("UL");
@@ -135,11 +168,22 @@
 
     }
 
-    //prevent the menu from toggling when the user clicks on delete
-    //TODO should close when user clicks on address.
-    document.getElementById('search-menu').addEventListener('click', function (event) {
-      event.stopPropagation();
+  }
+
+  function removeFromLocalStorage(location){
+    pastSearches = JSON.parse(localStorage.pastSearches);
+    let locationArr = [];
+
+    pastSearches.forEach(function (element){
+      let obj = JSON.parse(element)
+      locationArr.push(obj.address_title);
     });
+
+    const index = locationArr.indexOf(location);
+    pastSearches.splice(index,1);
+
+    localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+
   }
 
 })();

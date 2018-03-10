@@ -90,15 +90,15 @@ body {
 #navbar-search {
   background: transparent;
   border: none;
+  border-radius: 0;
   color: white;
   width: 215px;
 }
 
+
+
 #search-menu {
   background: #333;
-  border-top: red solid 1.5px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
   outline: none;
   color: white;
   font-size: 0.8rem;
@@ -396,7 +396,6 @@ footer {
 .Orange {
   background-color: orange;
 }
-
 
 /* Desktops and laptops ----------- */
 
