@@ -40,6 +40,17 @@
   });
 
 
+  //Scroll to warning details
+  document.getElementById('warning-details').addEventListener("click", function(){
+    var warnings = document.getElementById('warning-title');
+    zenscroll.intoView(warnings);
+  });
+
+  //Back to top link click
+  document.getElementById('toTop').addEventListener("click", function(){
+    zenscroll.toY(0);
+  });
+
 
   function togglediv(a,b) {
     for(let i =0; i<arguments.length; i++){

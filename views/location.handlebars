@@ -62,10 +62,9 @@
     <div id="warning-alerts-container">
       <div id="warning-alerts" class ="custom-container">
         <div class="warning-headline">
-          <img src="/img/{{weatherAlerts.0.status_color}}-warning.svg" width="27" height="25" alt="">
-          <span id="warning-color">{{weatherAlerts.0.status_color}} Warning</span>
-          <span id="warning-type"> - {{weatherAlerts.0.weather_type}}</span>
-          <span id="warning-details"><a href="#">Details</a></span>
+          <img src="/img/{{weatherAlerts.0.description.warning_today_status}}-warning.svg" width="27" height="25" alt="">
+          <span id="warning-type"> {{weatherAlerts.0.description.warning_today_type}}</span>
+          <span id="warning-details"><a>Details</a></span>
         </div>
       </div>
     </div>
@@ -170,7 +169,7 @@
     </div>
   </div>
   <div id="radar">
-    <div id="radar-title" class="title">
+    <div id="radar-title" class="title map-title">
       Live weather radar
     </div>
   <script src='https://darksky.net/map-embed/@radar,53.638,-7.734,6.js?embed=true&timeControl=true&fieldControl=true&defaultField=radar'></script>
@@ -241,37 +240,39 @@
       </table>
     </div>
   </div>
-  <div id="google-map-title" class="title">
-    Search location
-    <div id="google-map"></div>
+  <div id="google-map-title" class="title map-title">
+    Current traffic conditions
   </div>
-  <div class="weather-warnings-container custom-container">
-    <div class="title">
+  <div id="google-map"></div>
+  <div id="weather-warnings-container" class="custom-container">
+    <div class="title" id="warning-title">
         Weather Warning Details
     </div>
     {{#each weatherAlerts}}
-      <div class="warning-container">
+    <div class="warning-container">
+      <div class="warning-headline-container">
         <div class="warning-headline-color {{this.description.warning_today_status}}">{{this.description.warning_today_status}} Warning</div>
-        <div class="warning-weather">{{this.description.warning_today_type}} Between {{this.description.warning_today_from}} and {{this.description.warning_today_until}}</div>
+        <div class="warning-weather">{{this.description.warning_today_type}} - Between {{this.description.warning_today_from}} and {{this.description.warning_today_until}}</div>
       </div>
-      <div class="warning-title">
+      <div class="warning-title warning-pad">
         <h4>Regions Affected:</h4>
       </div>
-      <div class="warning-regions">
+      <div class="warning-regions warning-pad">
         {{#each this.location}}
           {{this}}
         {{/each}}
       </div>
-      <div class="warning-title">
+      <div class="warning-title warning-pad">
         <h4>Details:</h4>
       </div>
-      <div class="warning-details">
+      <div class="warning-details warning-pad">
         {{this.description.warning_today_desc}}
       </div>
-    {{/each}}
-    <div class="maplink">
-      <a href="#landing" class="action">Back to top</a>
     </div>
+    {{/each}}
+  </div>
+  <div class="maplink">
+    <a class="action" id="toTop">Back to top</a>
   </div>
 {{#section 'script'}}
   <script src="/js/skycons.js"></script>
@@ -287,9 +288,11 @@
     };
     localStorage.setItem('address', JSON.stringify(address));
 
-    if('{{weatherAlerts.0.status_color}}' === ''){
-      var elem = document.getElementById("warning-alerts-container");
-      elem.parentNode.removeChild(elem);
+    if('{{weatherAlerts.0.description.warning_today_status}}' !== ''){
+      const warn_landing = document.getElementById("warning-alerts-container");
+      const warn_details = document.getElementById("weather-warnings-container");
+      warn_landing.style.display = 'block';
+      warn_details.style.display = 'block';
     }
 
   </script>
@@ -321,6 +324,7 @@
     blackIcons.play();
 
   </script>
+  <script src="/js/zenscroll-min.js"></script>
   <script src="/js/app.js"></script>
   <script>
     function initMap() {
