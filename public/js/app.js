@@ -51,10 +51,12 @@
     if (ev.target.tagName === 'A') {
       searchInput.value = ev.target.textContent;
       searchInput.style.borderBottom = "";
-    }else{
-      ev.stopPropagation();
     }
   });
+
+  pastSearchesList.addEventListener('click', function (ev) {
+    ev.stopPropagation();
+  })
 
   //If input is left blank on click outside search bar, set input value to current search
   searchInput.addEventListener("blur", function() {

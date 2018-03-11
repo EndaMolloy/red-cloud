@@ -12,8 +12,22 @@ module.exports = {
   return axios.get(googleURI)
           .then((response)=> {
             const {address_components} = response.data.results[0];
-            const {formatted_address} = response.data.results[0];
+            let {formatted_address} = response.data.results[0];
             const {location} = response.data.results[0].geometry;
+
+            formatted_address_arr = formatted_address.split(',');
+            //remove the "Ireland"
+            formatted_address_arr.splice(formatted_address_arr.length-1,1);
+
+            if(formatted_address_arr.length == 3 && hasNumber(formatted_address_arr[2])== true){
+              formatted_address_arr.splice(2,1);
+            }
+            else if (formatted_address_arr.length == 3 && hasNumber(formatted_address_arr[2]) == false) {
+              formatted_address_arr.splice(0,1);
+            }
+
+            formatted_address = formatted_address_arr.join(',');
+
 
             return {
               formatted_address,
@@ -39,4 +53,8 @@ module.exports = {
             });
   }
 
+}
+
+function hasNumber(str) {
+  return /\d/.test(str);
 }
