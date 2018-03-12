@@ -33,7 +33,6 @@ body {
   padding-top: 20px;
 }
 
-/* NOTE: LANDING PAGE END ------- */
 
 #landing {
   background-image: url(https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e714908b0417954ef9d370c571355bf9&auto=format&fit=crop&w=634&q=80);
@@ -73,6 +72,10 @@ body {
   background-color: red;
 }
 
+#caret {
+  margin-top: 7px;
+}
+
 #search-bar {
   /*border: solid white 0.25px;*/
   box-shadow: none;
@@ -82,7 +85,7 @@ body {
 
 #search-form {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   margin-right: 1rem;
   display: block;
 }
@@ -240,6 +243,11 @@ a {
 
 #warning-details {
   padding-left: 80px;
+  float: right;
+}
+
+#warning-type {
+  float: left;
 }
 
 #next-hour-container {
@@ -442,6 +450,13 @@ and (min-width : 1224px) {
   #toTop:hover{
     text-decoration: underline;
     cursor: pointer;
+  }
+
+  .landing-container {
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding-top: 12%;
   }
 
   {

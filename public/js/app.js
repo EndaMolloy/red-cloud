@@ -1,9 +1,8 @@
 (function() {
 
-
+  //If previous searches exist then create search dropdown menu
+  //else add the current search to localStorage
   if(localStorage.pastSearches){
-    console.log("I've got old searches");
-
 
     let pastSearches = JSON.parse(localStorage.pastSearches)
 
@@ -75,7 +74,7 @@
 
   //Scroll to warning details
   document.getElementById('warning-details').addEventListener("click", function(){
-    var warnings = document.getElementById('warning-title');
+    var warnings = document.getElementsByClassName('warning-container');
     zenscroll.intoView(warnings);
   });
 
