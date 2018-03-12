@@ -4,13 +4,17 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('morgan');
 const expressHandlebars = require('express-handlebars');
+const compression = require('compression');
 
 const weather = require('./controllers/weather');
 const settings = require('./settings');
 
 const app = express();
 
-app.use(logger('dev'));
+// compress all responses
+app.use(compression())
+
+//app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
