@@ -50,6 +50,7 @@ body {
   background-position: center;
   background-size: cover;
   padding-top: 40px;
+  min-height: 600px;
 }
 
 #img-location-container {

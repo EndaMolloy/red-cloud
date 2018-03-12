@@ -40,7 +40,7 @@ router.route('/:coordinates/:location')
       ]);
 
 
-      res.render('location', {layout: 'forecast',
+      res.render('location', {
         rolling_metrics: rolling_metrics,
         weatherAlerts: weatherAlerts,
         address_coord: address,
