@@ -157,7 +157,7 @@
         var link = document.createElement("a");
         var text = document.createTextNode(address.address_title);
         link.appendChild(text);
-        link.href = `http://localhost:5000/forecast/${address.lat},${address.lng}/${address.address_title}`;
+        link.href = `https://redcloudweather.herokuapp.com/${address.lat},${address.lng}/${address.address_title}`;
         li.appendChild(link);
 
         //add remove button
