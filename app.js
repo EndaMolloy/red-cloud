@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 const hbsHelpers = expressHandlebars.create({
