@@ -13,17 +13,37 @@
 
       localStorage.pastSearches = JSON.stringify(pastSearches);
     }
+    if(pastSearches.length>1){
+      populatePastSearchesMenu();
 
-    populatePastSearchesMenu();
+      //prevent the menu from toggling when the user clicks on delete
+      //TODO should close when user clicks on address.
+      const pastSearchesList = document.getElementById("search-menu");
+      pastSearchesList.addEventListener('mousedown', function (ev) {
+        if (ev.target.tagName === 'A') {
+          searchInput.value = ev.target.textContent;
+          searchInput.style.borderBottom = "";
+        }
+      });
+
+      pastSearchesList.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+      })
+    }
+
   }else{
       var pastSearches = [];
       pastSearches.unshift(localStorage.address);
       localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+
   }
+
+
+
 
   const searchInput = document.getElementById("navbar-search");
   const searchBtn = document.getElementById("navbar-btn");
-  const pastSearchesList = document.getElementById("search-menu")
+
   let searchReq_submitted = true;
 
   //Set input box to empty if input clicked after a search
@@ -44,18 +64,7 @@
     }, true);
 
 
-  //prevent the menu from toggling when the user clicks on delete
-  //TODO should close when user clicks on address.
-  pastSearchesList.addEventListener('mousedown', function (ev) {
-    if (ev.target.tagName === 'A') {
-      searchInput.value = ev.target.textContent;
-      searchInput.style.borderBottom = "";
-    }
-  });
 
-  pastSearchesList.addEventListener('click', function (ev) {
-    ev.stopPropagation();
-  })
 
   //If input is left blank on click outside search bar, set input value to current search
   searchInput.addEventListener("blur", function() {

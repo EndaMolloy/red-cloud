@@ -6,8 +6,8 @@
 
   if(ls){
     const ls_obj = JSON.parse(ls);
-    //let str = Object.entries(ls_obj).map(([key, val]) => `${key}=${val}`).join('&');
-    window.location=`/weather/${ls_obj.lat},${ls_obj.lng}/${ls_obj.address_title}`;
+
+    window.location=`/forecast/${ls_obj.lat},${ls_obj.lng}/${ls_obj.address_title}`;
   }
 
 })();

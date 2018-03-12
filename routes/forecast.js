@@ -39,8 +39,8 @@ router.route('/:coordinates/:location')
         }
       ]);
 
-      
-      res.render('location', {
+
+      res.render('location', {layout: 'forecast',
         rolling_metrics: rolling_metrics,
         weatherAlerts: weatherAlerts,
         address_coord: address,

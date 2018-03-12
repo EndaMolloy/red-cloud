@@ -5,8 +5,6 @@ const path = require('path');
 const logger = require('morgan');
 const expressHandlebars = require('express-handlebars');
 
-const yargs = require('yargs');
-
 const weather = require('./controllers/weather');
 const settings = require('./settings');
 
@@ -33,6 +31,10 @@ app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
 app.use('/forecast', require('./routes/forecast'));
 
+// catch 404 placeholder
+app.use((req, res, next) => {
+  res.render('notFound');
+});
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Server started listening on port ${port}!`));
