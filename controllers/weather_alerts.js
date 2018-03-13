@@ -31,15 +31,22 @@ module.exports = {
                     }
                   })
                  .filter(arr =>{
-                    if(arr.description.today.warning_today_status != '1' || arr.description.tomor.warning_tomor_status != '1'){
+                    if(arr.description.today.warning_today_status != '1'){
                       return true;
                     }
+                 })
+                 .filter(arr => {
+                   if(arr.location[0] == 'Ireland West' || arr.location[0] == 'Ireland South' || arr.location[0] == 'Irish Sea' || arr.location[0] == 'Ireland North-West'){
+                     return false;
+                   }else{
+                     return true;
+                   }
                  })
                 })
 
                 if(formatedArr.length){
-                  const sortedArr = sortArray(formatedArr);
-                  return removeDuplicates(sortedArr);
+                //  console.log(formatedArr);
+                  return removeDuplicates(formatedArr);
                 }
                 else{
                   return formatedArr;
@@ -79,10 +86,6 @@ function sortArray(arr){
         location: v.location,
         description: v.description.today
       });
-      sortedArr.push({
-        location: v.location,
-        description: v.description.tomor
-      })
     }
   })
   return sortedArr;
@@ -90,24 +93,28 @@ function sortArray(arr){
 
 
 function removeDuplicates(arr){
-  let finalArr = [];
+  let dups = [];
 
-  //put first alert into final array
-  finalArr.push(arr.shift());
+  let unique = arr.filter(elm =>{
+    if(dups.indexOf(elm.description.today.warning_today_desc) == -1){
+      dups.push(elm.description.today.warning_today_desc);
+      return true;
+    }
+      return false;
+  })
+
 
   //loop over array, remove duplicates and add locations with the same warning into one array
-  arr.forEach(v=>{
-    finalArr.forEach((elem, i)=> {
-       if(JSON.stringify(elem.description) === JSON.stringify(v.description)){
-         finalArr[i].location.push(v.location[0]);
-       }else{
-         finalArr.push(elem);
+  unique.forEach((v, i) =>{
+    arr.forEach((elem, j) => {
+       if(JSON.stringify(elem.description) === JSON.stringify(v.description) && elem.location[0] !== v.location[0]){
+         unique[i].location.push(elem.location[0]);
        }
      })
    })
 
    //format the finalArr
-   return finalArrFormat(finalArr);
+   return finalArrFormat(unique);
 }
 
 
@@ -118,13 +125,14 @@ function finalArrFormat(arr){
     if (v.location.length == 26) {
       v.location = ['Nationwide']
     }
+
     //format respective values to publishable format
-    v.description.warning_today_desc = getDescFormat(v.description.warning_today_desc);
-    v.description.warning_today_type = getWarningType(v.description.warning_today_type);
-    v.description.warning_today_status = getColor(v.description.warning_today_status);
-    v.description.warning_today_from = getTimeFormat(v.description.warning_today_from);
-    v.description.warning_today_until = getTimeFormat(v.description.warning_today_until);
-    v.expiration = getUnix(v.description.warning_today_until);
+    v.description.warning_today_desc = getDescFormat(v.description.today.warning_today_desc);
+    v.description.warning_today_type = getWarningType(v.description.today.warning_today_type);
+    v.description.warning_today_status = getColor(v.description.today.warning_today_status);
+    v.description.warning_today_from = getTimeFormat(v.description.today.warning_today_from);
+    v.description.warning_today_until = getTimeFormat(v.description.today.warning_today_until);
+    v.expiration = getUnix(v.description.today.warning_today_until);
   })
 
   return arr;
@@ -142,12 +150,7 @@ function formatDetails(text){
   const warning_today_until = $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(4)').text();
   const warning_today_desc = $('table > tbody > tr:nth-child(3) > td:nth-child(2)').text();
 
-  //cheerio selectors tomorrow
-  const warning_tomor_status = $('table > tbody > tr:nth-child(5) > td:nth-child(1) > img').attr('alt').split(':').pop();
-  const warning_tomor_type = $('table > tbody > tr:nth-child(5) > td:nth-child(1) > img').attr('src').split('/').pop();
-  const warning_tomor_from = $('table > tbody > tr:nth-child(5) > td:nth-child(2) > i:nth-child(2)').text();
-  const warning_tomor_until = $('table > tbody > tr:nth-child(5) > td:nth-child(2) > i:nth-child(4)').text();
-  const warning_tomor_desc = $('table > tbody > tr:nth-child(6) > td:nth-child(2)').text();
+
 
 
   return {
@@ -158,13 +161,6 @@ function formatDetails(text){
       warning_today_from,
       warning_today_until
 
-    },
-    tomor: {
-      warning_tomor_desc,
-      warning_tomor_type,
-      warning_tomor_status,
-      warning_tomor_from,
-      warning_today_until
     }
   }
 }
@@ -202,7 +198,7 @@ function getWarningType(str){
       weather_type = 'Avalanches';
       break;
     case 't10':
-      weather_type = 'Rain';
+      weather_type = 'Rainfall';
       break;
     case 't11':
       weather_type = 'Flood';
@@ -215,8 +211,13 @@ function getWarningType(str){
 }
 
 function getDescFormat(str){
-  const splitStr = str.split("  ");
-  return splitStr[1];
+  if(str.includes('english')){
+    const splitStr = str.split("  ");
+    return splitStr[1];
+  }else{
+    return str;
+  }
+
 }
 
 function getColor(num){
