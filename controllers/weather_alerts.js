@@ -109,41 +109,6 @@ function separateWarnings(arr){
 }
 
 
-function sortArray(arr){
-  let sortedArr = [];
-  arr.forEach(v=>{
-    if(v.description.today.warning_today_status == '1'){
-      sortedArr.push({
-        location: v.location,
-        description: v.description.tomor
-      });
-    }
-    else if(v.description.today.warning_today_status != '1'){
-      if(JSON.stringify(v.description.today.warning_today_desc) === JSON.stringify(v.description.tomor.warning_tomor_desc)){
-        v.description.today.warning_today_until = v.description.tomor.warning_tomor_until;
-        sortedArr.push({
-          location: v.location,
-          description: v.description.today
-        });
-      }
-      else{
-        sortedArr.push({
-          location: v.location,
-          description: v.description.today
-        })
-      }
-    }
-    else{
-      sortedArr.push({
-        location: v.location,
-        description: v.description.today
-      });
-    }
-  })
-  return sortedArr;
-}
-
-
 function removeDuplicates(arr){
   let dups = [];
 
