@@ -83,8 +83,8 @@
 
   //Scroll to warning details
   document.getElementById('warning-details').addEventListener("click", function(){
-    var warnings = document.getElementsByClassName('warning-container');
-    zenscroll.intoView(warnings);
+    var warnings = document.getElementById('warning-title');
+    zenscroll.center(warnings);
   });
 
   //Back to top link click
