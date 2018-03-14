@@ -31,7 +31,7 @@ module.exports = {
                     }
                   })
                  .filter(arr =>{
-                    if(arr.description.today.warning_today_status != '1'){
+                    if(arr.description.today[0].warning_today_0_status != '1'){
                       return true;
                     }
                  })
@@ -45,8 +45,8 @@ module.exports = {
                 })
 
                 if(formatedArr.length){
-                //  console.log(formatedArr);
-                  return removeDuplicates(formatedArr);
+                  const separatedArr = separateWarnings(formatedArr);
+                  return removeDuplicates(separatedArr);
                 }
                 else{
                   return formatedArr;
@@ -54,6 +54,58 @@ module.exports = {
             });
   }
 
+}
+
+function separateWarnings(arr){
+  const separated = arr.map(v=> {
+    let today = [];
+    v.description.today.forEach(el=> {
+      today.push({
+        location: [v.location[0]],
+        description: {
+          today: el
+        }
+      });
+    })
+    return today;
+  })
+  .reduce((acc,curr) => acc.concat(curr),[])
+  .map(v => {
+    if(v.description.today.warning_today_1_desc)
+      return {
+          location: [v.location[0]],
+          description: {
+            today: {
+              warning_today_desc : v.description.today.warning_today_1_desc,
+              warning_today_type : v.description.today.warning_today_1_type,
+              warning_today_status : v.description.today.warning_today_1_status,
+              warning_today_from : v.description.today.warning_today_1_from,
+              warning_today_until : v.description.today.warning_today_1_until
+            }
+          },
+          expiration : "",
+          start : ""
+      }
+    else {
+      return {
+        location: [v.location[0]],
+        description: {
+          today: {
+            warning_today_desc : v.description.today.warning_today_0_desc,
+            warning_today_type : v.description.today.warning_today_0_type,
+            warning_today_status : v.description.today.warning_today_0_status,
+            warning_today_from : v.description.today.warning_today_0_from,
+            warning_today_until : v.description.today.warning_today_0_until
+          }
+        },
+        expiration : "",
+        start : ""
+      }
+    }
+  })
+
+
+  return separated;
 }
 
 
@@ -113,6 +165,16 @@ function removeDuplicates(arr){
      })
    })
 
+   unique = unique.filter(v => {
+     if (v.description.today.warning_today_status == undefined || v.description.today.warning_today_status == null){
+      return false;
+    }
+    else {
+      return true;
+    }
+   })
+
+
    //format the finalArr
    return finalArrFormat(unique);
 }
@@ -130,13 +192,18 @@ function finalArrFormat(arr){
     v.description.warning_today_desc = getDescFormat(v.description.today.warning_today_desc);
     v.description.warning_today_type = getWarningType(v.description.today.warning_today_type);
     v.description.warning_today_status = getColor(v.description.today.warning_today_status);
+    v.expiration = getUnix(v.description.today.warning_today_until);
+    v.start = getUnix(v.description.today.warning_today_from);
     v.description.warning_today_from = getTimeFormat(v.description.today.warning_today_from);
     v.description.warning_today_until = getTimeFormat(v.description.today.warning_today_until);
-    v.expiration = getUnix(v.description.today.warning_today_until);
   })
 
-  return arr;
+  //sort based on earliest date
+  arr.sort((a,b)=> {
+    return new Date(a.start) - new Date(b.start);
+  });
 
+  return arr;
 }
 
 
@@ -144,24 +211,33 @@ function formatDetails(text){
   const $ = cheerio.load(text);
 
   //cheerio selectors today
-  const warning_today_status = $('table > tbody > tr:nth-child(2) > td:nth-child(1) > img').attr('alt').split(':').pop();
-  const warning_today_type = $('table > tbody > tr:nth-child(2) > td:nth-child(1) > img').attr('src').split('/').pop();
-  const warning_today_from = $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(2)').text();
-  const warning_today_until = $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(4)').text();
-  const warning_today_desc = $('table > tbody > tr:nth-child(3) > td:nth-child(2)').text();
+  const warning_today_0_status = $('table > tbody > tr:nth-child(2) > td:nth-child(1) > img').attr('alt').split(':').pop();
+  const warning_today_0_type = $('table > tbody > tr:nth-child(2) > td:nth-child(1) > img').attr('src').split('/').pop();
+  const warning_today_0_from = $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(2)').text();
+  const warning_today_0_until = $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(4)').text();
+  const warning_today_0_desc = $('table > tbody > tr:nth-child(3) > td:nth-child(2)').text();
 
-
-
+  const warning_today_1_status = ($('table > tbody > tr:nth-child(4) > td:nth-child(1) > img').attr('alt') == undefined) ? null : $('table > tbody > tr:nth-child(4) > td:nth-child(1) > img').attr('alt').split(':').pop();
+  const warning_today_1_type = ($('table > tbody > tr:nth-child(4) > td:nth-child(1) > img').attr('src') == undefined) ? null: $('table > tbody > tr:nth-child(4) > td:nth-child(1) > img').attr('src').split('/').pop();
+  const warning_today_1_from = ($('table > tbody > tr:nth-child(4) > td:nth-child(2) > i:nth-child(2)').text() == undefined) ? null : $('table > tbody > tr:nth-child(4) > td:nth-child(2) > i:nth-child(2)').text();
+  const warning_today_1_until = ($('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(4)').text() == undefined) ? null : $('table > tbody > tr:nth-child(2) > td:nth-child(2) > i:nth-child(4)').text();
+  const warning_today_1_desc = $('table > tbody > tr:nth-child(5) > td:nth-child(2)').text();
 
   return {
-    today: {
-      warning_today_desc,
-      warning_today_type,
-      warning_today_status,
-      warning_today_from,
-      warning_today_until
-
-    }
+    today: [{
+      warning_today_0_desc,
+      warning_today_0_type,
+      warning_today_0_status,
+      warning_today_0_from,
+      warning_today_0_until
+    },
+    {
+      warning_today_1_desc,
+      warning_today_1_type,
+      warning_today_1_status,
+      warning_today_1_from,
+      warning_today_1_until
+    }]
   }
 }
 
@@ -239,11 +315,7 @@ function getColor(num){
 
 function getTimeFormat(str){
 
-  const splitStr = str.split(' ')
-  splitStr.splice(-1)
-  //
-  const euro_date = splitStr[0].split('.');
-  let js_date = `${euro_date[1]}.${euro_date[0]}.${euro_date[2]} ${splitStr[1]}`
+  let js_date = jsDateFormat(str);
 
   const CET = new Date(js_date);
   CET.setHours(CET.getHours()-1)
@@ -251,7 +323,17 @@ function getTimeFormat(str){
   return moment(CET).format('LT') +" "+ moment(CET).format('dddd Do MMMM');
 }
 
+function jsDateFormat(str){
+  const splitStr = str.split(' ');
+  splitStr.splice(-1);
+
+  const euro_date = splitStr[0].split('.');
+  return `${euro_date[1]}.${euro_date[0]}.${euro_date[2]} ${splitStr[1]}`;
+}
+
 function getUnix(str){
-  const date = str.split('CET')
-  return parseInt((new Date(date[0]).getTime() / 1000).toFixed(0))
+  const date = jsDateFormat(str);
+  const newDate = parseInt((new Date(date).getTime() / 1000).toFixed(0))
+  //console.log(newDate);
+  return newDate;
 }
